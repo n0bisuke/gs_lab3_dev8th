@@ -1,4 +1,6 @@
-Lab 3期
+[ジーズアカデミーのびすけ班](https://www.facebook.com/groups/982088488590849/)
+
+Lab 3期 & Dev 8期
 
 ## 基本ルール
 
