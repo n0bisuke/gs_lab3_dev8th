@@ -16,6 +16,15 @@ https://github.com/n0bisuke/gs_lab3_dev8th/issues/1
 * 質問したらConvert to issueを選択してください。LINEに通知がきます。
 * のびすけレスがなく緊急な場合は個別チャットで質問なげてください
 
+## スケジュール
+
+* 12/14 Lab3期
+* 1月上旬 Lab3期 GGA
+* 1月上旬 Lab3期 卒業式
+* 1/18 Dev8期 最終提出
+* 2/8 Dev8期 GGA
+* 2/10 Dev8期 卒業式
+
 ## URL
 
 作ったら記載しましょう
