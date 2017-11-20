@@ -170,7 +170,7 @@ Vapour
 -------------------------------------------
 
 
-必要技術(Fix用):
+必要技術():
 
 ○ サーバーレスアーキテクチャ
 
@@ -179,6 +179,7 @@ Vapour
 ○ firebase
 
 ○ サーバーサイド
+
 node.js
 
 ○ DB設計
@@ -242,10 +243,28 @@ ios: 次期IOSで対応？
 PWA関連
 -------------------------------------------
 
+
 https://shop.polymer-project.org/
 
+・workbox
 
 
+https://developers.google.com/web/tools/workbox/
+
+
+・manifest.json
+
+・Service Worker 
+
+
+
+
+
+-------------------------------------------
+Vue
+-------------------------------------------
+
+vue.useは基本的上の方に書く
 
 
 

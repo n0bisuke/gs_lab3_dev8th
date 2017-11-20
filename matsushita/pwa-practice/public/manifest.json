@@ -1,6 +1,6 @@
 {
-  "name" : "Sweaty",
-  "short_name" : "PWAGram",
+  "name" : "MOH",
+  "short_name" : "MOH",
   "start_url": "/index.html",
   "scope" :".",
   "display" : "standalone",
@@ -37,5 +37,4 @@
       "size": "512x512"
     }
   ]
-
 }
