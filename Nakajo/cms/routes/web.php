@@ -39,3 +39,7 @@ Route::resource("tasks","TaskController"); // Add this line in routes.php
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+
+//投稿処理のコントローラー
+Route::get('/post', 'PostsController@post');

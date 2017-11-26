@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)http://localhost:8888/kadai/final/kids.php -->
+<html lang="ja"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>スポーツの国を、楽しもう。</title>
+		<meta name="description" content="2020年東京オリンピックに向けて、スポーツを盛り上げよう！スポーツ用品や観戦チケット、ボランティアグッズを買ったり売ったりできます☆">
+	<link rel="stylesheet" href="./スポーツの国を、楽しもう。_files/style.css">
+  <link rel="stylesheet" href="./スポーツの国を、楽しもう。_files/colorbox.css">
+  <!-- カウントダウン -->
+  <script src="./スポーツの国を、楽しもう。_files/jquery.min.js"></script>
+  <script>
+    var $311 = $.noConflict(true);
+  </script>
+  <!-- ビットコインの価格 -->
+  <script src="./スポーツの国を、楽しもう。_files/jquery-1.11.3.min.js"></script>
+  <script>
+  $(function() {
+    // ［検索］ボタンクリックで郵便番号検索を実行
+    window.onload = function() {
+      $.getJSON('https://api.cryptonator.com/api/ticker/btc-jpy',{})
+      .done(function(data) {
+        if (data.ticker) {
+          // 結果を取得後、中身が空でなければ、その値を反映
+          var result = data.ticker.price;
+          var _pow = Math.pow( 10 , 3 ) ;
+          result =  Math.round( result * _pow ) / _pow ;
+          $('#btc').text('1 Bitcoin: '+result+'円');
+        } else {
+          // 中身が空の場合は、エラーメッセージを反映
+          $('#btc').text('1 Bitcoin: Error.');
+        }
+      });
+
+      $.getJSON('https://api.cryptonator.com/api/ticker/xmr-jpy',{})
+      .done(function(data) {
+        if (data.ticker) {
+          // 結果を取得後、中身が空でなければ、その値を反映
+          var result = data.ticker.price;
+          var _pow = Math.pow( 10 , 3 ) ;
+          result =  Math.round( result * _pow ) / _pow ;
+          $('#xmr').text('1 Monero: '+result+'円');
+        } else {
+          // 中身が空の場合は、エラーメッセージを反映
+          $('#xmr').text('1 Monero: Error.');
+        }
+      });
+    };
+  });
+  </script>
+  <!-- 画像をかっこよく表示 -->
+  <script src="./スポーツの国を、楽しもう。_files/jquery.min(1).js"></script>
+  <script src="./スポーツの国を、楽しもう。_files/jquery.colorbox-min.js"></script>
+  <script>
+  //画像単体
+  $(function() {
+  	$(".single").colorbox({
+  		maxWidth:"90%",
+  		maxHeight:"90%",
+  		opacity: 0.7
+  	});
+  });
+
+  //スライドショー
+  $(function() {
+  	$(".gallery").colorbox({
+  		rel:'slideshow',
+  		slideshow:true,
+  		slideshowSpeed:3000,
+  		maxWidth:"90%",
+  		maxHeight:"90%",
+  		opacity: 0.7
+  	});
+  });
+  </script>
+  <link rel="shortcut icon" href="http://localhost:8888/kadai/final/img/icon/favicon.ico">
+</head>
+
+<body cz-shortcut-listen="true">
+  <header>
+    <div class="header_top">
+      <div class="header_left">
+  	    <a href="http://localhost:8888/kadai/final/index.php">
+  	      <img src="./スポーツの国を、楽しもう。_files/logo.png" alt="Topに戻ります。" title="Topに戻る" class="logo">
+  	      <h1>スポーツの国を、楽しもう。</h1>
+        </a>
+      </div>
+  		<div class="header_right">
+<!--
+        <form class="search" method="POST" action="/kadai/final/kids.php">
+              <input type="text" name="text1" size="27" placeholder="キーワードで検索">
+              <input type="submit" value="検索" name="sub1">
+        	</form>
+          <br />
+<b>Notice</b>:  Undefined variable: sql in <b>/Applications/MAMP/htdocs/kadai/final/view/category/kids.php</b> on line <b>95</b><br />
+<p>組み立てたSQL分: -->
+        <ul>
+          <strong>
+            <li id="btc">1 Bitcoin: 110649.2円</li>
+          </strong>
+                    <li>
+            <a href="http://localhost:8888/kadai/final/regist.php" class="menu">[会員登録]</a>
+          </li>
+          <li>
+            <a href="http://localhost:8888/kadai/final/login.php" class="menu">
+            <img src="./スポーツの国を、楽しもう。_files/login.png" height="155px">
+            </a>
+          </li>
+            		    <li>
+            <a href="http://fb.me/LiCleOrg" target="_blank">
+              <!-- target="_blank"を使用することで、SNS系は新しいウィンドウで表示 -->
+  				  <img src="./スポーツの国を、楽しもう。_files/fb.png">
+  			    </a>
+          </li>
+  				<li>
+            <a href="http://twitter.com/licleorg" target="_blank">
+  						<img src="./スポーツの国を、楽しもう。_files/twitter.png">
+  					</a>
+          </li>
+  			</ul>
+      </div>
+    </div>
+    <div class="first_choose">
+      <ul class="top_list">
+        <li class="header_list"><a href="http://localhost:8888/kadai/final/index_details.php">新着アイテム</a></li>
+        <li class="header_list"><a href="http://localhost:8888/kadai/final/tokyo2020_countdown.php">東京五輪の掲示板</a></li>
+        <li class="header_list"><a href="javascript:alert(&#39;「する」スポーツは工事中です&#39;);">「する」スポーツ</a></li>
+        <li class="header_list"><a href="javascript:alert(&#39;「みる」スポーツは工事中です。オリンピックなどの観戦チケットはこちらからご購入いただけます。&#39;);">「みる」スポーツ</a></li>
+        <li class="header_list"><a href="javascript:alert(&#39;「ささえる」スポーツは工事中です。スポーツの仕事やボランティアに関するページはこちらから観覧いただけます。&#39;);">「ささえる」スポーツ</a></li>
+      </ul>
+    </div>
+  </header>
+
+<div class="tokyo2020">
+  <iframe src="./スポーツの国を、楽しもう。_files/W8zmSkKmzpc.html" frameborder="0"></iframe>
+</div>
+
+<!-- カートに追加されたかどうか表示 -->
+<div align="center">
+</div>
+
+
+	<table align="center">
+		<tbody><tr>
+      <td><a href="http://localhost:8888/kadai/final/tennis.php"><img src="./スポーツの国を、楽しもう。_files/tennis.png" alt="テニスに飛びます。" title="テニス"></a></td>
+			<td><a href="http://localhost:8888/kadai/final/baseball.php"><img src="./スポーツの国を、楽しもう。_files/baseball.png" alt="野球に飛びます。" title="野球"></a></td>
+			<td><a href="http://localhost:8888/kadai/final/basketball.php"><img src="./スポーツの国を、楽しもう。_files/basketball.png" alt="バスケに飛びます。" title="バスケ"></a></td>
+			<td><a href="http://localhost:8888/kadai/final/soccer.php"><img src="./スポーツの国を、楽しもう。_files/soccer.png" alt="サッカーに飛びます。" title="サッカー"></a></td>
+			<td><a href="http://localhost:8888/kadai/final/trackfield.php"><img src="./スポーツの国を、楽しもう。_files/field.png" alt="陸上に飛びます。" title="陸上"></a></td>
+		</tr>
+		<tr>
+			<td><a href="http://localhost:8888/kadai/final/kids.php"><img src="./スポーツの国を、楽しもう。_files/child.png" alt="こどもに飛びます。" title="こども"></a></td>
+			<td><a href="http://localhost:8888/kadai/final/para.php"><img src="./スポーツの国を、楽しもう。_files/para.png" alt="パラスポーツに飛びます。" title="パラスポーツ"></a></td>
+			<td><a href="http://localhost:8888/kadai/final/music.php"><img src="./スポーツの国を、楽しもう。_files/music.png" alt="音楽に飛びます。" title="音楽"></a></td>
+			<td><a href="http://localhost:8888/kadai/final/global.php"><img src="./スポーツの国を、楽しもう。_files/world.png" alt="国際交流に飛びます。" title="国際交流"></a></td>
+			<td><a href="http://localhost:8888/kadai/final/others.php"><img src="./スポーツの国を、楽しもう。_files/event.png" alt="イベントに飛びます。" title="イベント"></a></td>
+		</tr>
+	</tbody></table>
+
+<section>
+  <!-- 左のボックス -->
+  <main>
+    <nav>
+      <div class="navigation">
+        <h2>分野別アイテム</h2>
+        <ul class="navi_list">
+          <li><a href="http://localhost:8888/kadai/final/tennis.php"><img src="./スポーツの国を、楽しもう。_files/arrow.png">テニス</a></li>
+          <li><a href="http://localhost:8888/kadai/final/baseball.php"><img src="./スポーツの国を、楽しもう。_files/arrow.png">野球</a></li>
+          <li><a href="http://localhost:8888/kadai/final/basketball.php"><img src="./スポーツの国を、楽しもう。_files/arrow.png">バスケットボール</a></li>
+          <li><a href="http://localhost:8888/kadai/final/soccer.php"><img src="./スポーツの国を、楽しもう。_files/arrow.png">サッカー</a></li>
+          <li><a href="http://localhost:8888/kadai/final/trackfield.php"><img src="./スポーツの国を、楽しもう。_files/arrow.png">陸上競技</a></li>
+          <li><a href="http://localhost:8888/kadai/final/kids.php"><img src="./スポーツの国を、楽しもう。_files/arrow.png">こどもスポーツ</a></li>
+          <li><a href="http://localhost:8888/kadai/final/others.php"><img src="./スポーツの国を、楽しもう。_files/arrow.png">パラスポーツ</a></li>
+          <li><a href="http://localhost:8888/kadai/final/music.php"><img src="./スポーツの国を、楽しもう。_files/arrow.png">音楽とスポーツ</a></li>
+          <li><a href="http://localhost:8888/kadai/final/global.php"><img src="./スポーツの国を、楽しもう。_files/arrow.png">世界のスポーツ</a></li>
+          <li><a href="http://localhost:8888/kadai/final/others.php"><img src="./スポーツの国を、楽しもう。_files/arrow.png">その他</a></li>
+        </ul>
+      </div>
+      <div class="navigation">
+        <h2>掲示板</h2>
+        <ul>
+          <li><a href="http://localhost:8888/kadai/final/tokyo2020_countdown.php"><img src="./スポーツの国を、楽しもう。_files/arrow.png">東京五輪</a></li>
+          <li><a href="http://localhost:8888/kadai/final/tennis_hitokoto.php"><img src="./スポーツの国を、楽しもう。_files/arrow.png">テニス</a></li>
+          <li><a href="http://localhost:8888/kadai/final/basketball_hitokoto.php"><img src="./スポーツの国を、楽しもう。_files/arrow.png">バスケ</a></li>
+          <li><a href="http://localhost:8888/kadai/final/soccer_hitokoto.php"><img src="./スポーツの国を、楽しもう。_files/arrow.png">サッカー</a></li>
+          <li><a href="http://localhost:8888/kadai/final/trackfield_hitokoto.php"><img src="./スポーツの国を、楽しもう。_files/arrow.png">陸上系</a></li>
+          <li><a href="http://localhost:8888/kadai/final/kids_hitokoto.php"><img src="./スポーツの国を、楽しもう。_files/arrow.png">こども</a></li>
+          <li><a href="http://localhost:8888/kadai/final/para_hitokoto.php"><img src="./スポーツの国を、楽しもう。_files/arrow.png">パラスポーツ</a></li>
+          <li><a href="http://localhost:8888/kadai/final/music_hitokoto.php"><img src="./スポーツの国を、楽しもう。_files/arrow.png">音楽</a></li>
+          <li><a href="http://localhost:8888/kadai/final/global_hitokoto.php"><img src="./スポーツの国を、楽しもう。_files/arrow.png">世界</a></li>
+          <li><a href="http://localhost:8888/kadai/final/others_hitokoto.php"><img src="./スポーツの国を、楽しもう。_files/arrow.png">なんでも</a></li>
+        </ul>
+      </div>
+      <div class="navigation">
+        <h2>目的別アイテム</h2>
+        <ul>
+          <li><img src="./スポーツの国を、楽しもう。_files/arrow.png"><a href="javascript:alert(&#39;ただいま工事中です&#39;);">楽しみたい！</a></li>
+          <li><img src="./スポーツの国を、楽しもう。_files/arrow.png"><a href="javascript:alert(&#39;ただいま工事中です&#39;);">有名人選手と同じ</a></li>
+          <li><img src="./スポーツの国を、楽しもう。_files/arrow.png"><a href="javascript:alert(&#39;ただいま工事中です&#39;);">部活アイテム</a></li>
+          <li><img src="./スポーツの国を、楽しもう。_files/arrow.png"><a href="javascript:alert(&#39;ただいま工事中です&#39;);">応援アイテム</a></li>
+          <li><img src="./スポーツの国を、楽しもう。_files/arrow.png"><a href="http://localhost:8888/kadai/final/index_cheapest.php"><strong>激安アイテム</strong></a></li>
+          <li><img src="./スポーツの国を、楽しもう。_files/arrow.png"><a href="javascript:alert(&#39;ただいま工事中です☆&#39;);">レアアイテム</a></li>
+          <li><img src="./スポーツの国を、楽しもう。_files/arrow.png"><a href="javascript:alert(&#39;ただいま工事中です★&#39;);">激レアアイテム</a></li>
+          <li><img src="./スポーツの国を、楽しもう。_files/arrow.png"><a href="javascript:alert(&#39;ただいま工事中です♡&#39;);">秘密のアイテム♡</a></li>
+        </ul>
+      </div>
+    </nav>
+<!-- 真ん中のボックス -->
+<!-- 真ん中のボックス -->
+<article>
+  <div class="center_column_top">
+    <h2>&nbsp;【新規入荷】早い者勝ち！新着アイテム！！</h2>
+    <div class="new_contents">
+          </div>
+    <div class="detail">
+      <a href="http://localhost:8888/kadai/final/basketball_details.php"><img src="./スポーツの国を、楽しもう。_files/arrow.png">続きをみる</a>
+    </div>
+  </div>
+
+  <div class="center_column">
+    <h2>&nbsp;【おすすめ】ズバリ！厳選されし注目アイテム</h2>
+
+              <div class="easy_one">
+        <form action="http://localhost:8888/kadai/final/" method="post">
+            <img class="easy_img" src="./スポーツの国を、楽しもう。_files/underarmer.jpeg">
+              <div class="easy_text">
+              <h4>〜アンダーアーマーの最新シューズ『<strong>Clutchfit</strong>』〜</h4>
+              <p>
+              &nbsp;&nbsp;&nbsp;アンダーアーマーのあの伝説のシリーズがついに究極を極めてしまった。バスケに熱狂する青年少女たちよ・・・今年の夏のスポーツは、このシューズで決まり。<br>
+              </p>
+              <span class="item-price">&nbsp;&nbsp;&nbsp;値段:0.06BTC</span>
+
+                    <input class="cart-btn" type="submit" value="カートに入れる">
+        
+              <input type="hidden" name="item_id" value="10">
+              <input type="hidden" name="mode" value="insert_cart">
+            </div>
+        </form>
+        </div>
+      
+  </div>
+  <div class="center_column">
+    <h2>&nbsp;【速報】最新ニュース</h2>
+    <div class="easy_one">
+      <img src="./スポーツの国を、楽しもう。_files/beachv.png" class="easy_img">
+      <div class="easy_text">
+        <h4><a href="http://localhost:8888/kadai/final/kids.php#">美女とビーチバレー〜20代限定〜</a></h4>
+        <p>
+          &nbsp;&nbsp;&nbsp;太陽に都会の砂浜、そこに集まる若い青年少女たちよ・・・今年の夏のスポーツはみずみずしいのが特徴です。<br>
+          だれでも簡単にできる、ビーチスポーツを紹介しましょう。
+          </p><div class="detail">
+            <a href="http://localhost:8888/kadai/final/kids.php#"><img src="./スポーツの国を、楽しもう。_files/arrow.png">続きを読む</a>
+          </div>
+        <p></p>
+      </div>
+    </div>
+    <div class="easy_one">
+      <a href="http://localhost:8888/kadai/final/kids.php#"><img src="./スポーツの国を、楽しもう。_files/firebonds.png" class="easy_img"></a>
+      <div class="easy_text">
+        <h4><a href="http://localhost:8888/kadai/final/kids.php#">ファイヤーボンズの選手と3ヶ月間の下宿</a></h4>
+        <p>
+          &nbsp;&nbsp;&nbsp;春になると部活動に悩まされる人は多いと思います。<br>
+          バスケ部に新しく入る子どもたちとプロ選手と共に、3ヶ月一緒に過ごしませんか？！<br>
+          さて、その選手とは・・・！？
+          </p><div class="detail">
+            <a href="http://localhost:8888/kadai/final/kids.php#"><img src="./スポーツの国を、楽しもう。_files/arrow.png">続きを読む</a>
+          </div>
+        <p></p>
+      </div>
+    </div>
+  </div>
+  <div class="center_column">
+    <h2>&nbsp;【じゃんけんゲーム】</h2>
+    <form>
+      あなたが出すのは？
+      <select id="selected">
+        <option>グー</option>
+        <option>チョキ</option>
+        <option>パー</option>
+      </select>
+      <input type="button" value="決定" onclick="janken()">
+    </form>
+    <div id="cpuHand"><!-- ここに相手の選択した手が表示されます --></div>
+    <div id="result"><!-- ここに勝敗を表示します --></div>
+    <script type="text/javascript">
+    function janken(){
+      console.log(document.getElementById("selected").options);
+      // あなたが選択した手[グー: 0, チョキ: 1, パー: 2]
+      var selectedNum = document.getElementById("selected").selectedIndex;
+      // コンピュータがランダムに選出した手[グー: 0, チョキ: 1, パー: 2]
+      var cpuSelectedNum = Math.floor(Math.random() * 3);
+      // コンピュータが選出した手(文字列)
+      var cpuHand = "";
+      // 勝敗の結果
+      var results = ["あなたの<strong>勝利</strong>です！何か良いアイテムが見つかるかも♪",
+                     "あなたの<strong>負け</strong>です！今日はそんな良いアイテムは見つからないかも...",
+                     "今回は<strong>あいこ</strong>です。もう一回トライしてみましょう！"];
+      if( cpuSelectedNum == 0 ){
+        cpuHand = ("グー");
+      } else if( cpuSelectedNum == 1 ){
+        cpuHand = "チョキ";
+      } else if( cpuSelectedNum == 2 ){
+        cpuHand = "パー";
+      }
+      var i = 0;
+      if (selectedNum == cpuSelectedNum) {
+        i = 2;
+      } else if (selectedNum - cpuSelectedNum == -1 || selectedNum - cpuSelectedNum == 2) {
+        i = 0;
+      } else {
+        i = 1;
+      }
+
+      //結果の判定処理を記述して下さい
+      document.getElementById("cpuHand").innerHTML = "相手が出したのは『<strong>" + cpuHand + "</strong>』です。";
+      document.getElementById("result").innerHTML = results[i];
+    }
+
+    </script>
+  </div>
+  <div class="center_column">
+    <h2>&nbsp;【東京2020&nbsp;カウントダウンタイマー】</h2>
+    <h1>
+      東京オリンピックまで、残り
+    </h1>
+
+    <h1 id="TimeRemaining" class="panel-body">1223日18時間17分3秒</h1>
+  </div>
+  <div class="center_column_bottom">
+
+    <h2>&nbsp;【ひとこと掲示板】</h2>
+      <ul>
+              </ul>
+                <ul>
+                  <p>
+            <strong>【武田尚さん】</strong>            2017-03-13 20:26:09<br>
+            <!-- 改行コードの置き換え -->
+                        こんばんは            <!-- <p>$1</p>を使ったときの処理
+                        こんばんは             -->
+          </p>
+              </ul>
+        
+    </div>
+</article>
+  <!-- 右のボックス -->
+      <aside>
+        <a href="https://bitflyer.jp/?bf=hqazqhpu" target="_blank">
+          <img src="./スポーツの国を、楽しもう。_files/affi_04_160x600.gif" alt="bitFlyer ビットコインを始めるなら安心・安全な取引所で" class="advert_top">
+        </a>
+        <a href="https://coincheck.com/?c=D1lloUpL5LQ" target="_blank">
+          <img src="./スポーツの国を、楽しもう。_files/01_cc_banner_201702_300x600.png" alt="日本で一番簡単にビットコインが買える取引所 coincheck bitcoin" width="160" class="advert_middle">
+        </a>
+        <div class="advert">
+          <iframe src="./スポーツの国を、楽しもう。_files/page.html" width="160" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
+        </div>
+      </aside>
+    </main>
+  </section>
+  <!-- 最下部 -->
+  <footer>
+    <ul class="bottom_list">
+      <li class="footer_list"><a href="http://localhost:8888/kadai/final/user_policy.php">利用規約</a></li>
+      <li class="footer_list"><a href="http://localhost:8888/kadai/final/privacy_policy.php">プライバシポリシー</a></li>
+      <li class="footer_list"><a href="javascript:alert(&#39;メールアドレス:nj.takayuki@gmail.com&#39;);">お問い合わせ</a></li>
+      <li class="footer_list"><a href="javascript:alert(&#39;商品は全て、ビットコインでご購入可能です。ビットコインをお持ちでしたら、カートに入れて、右上のカートをクリックして購入してください！&#39;);">ご利用ガイド</a></li>
+    </ul>
+    <p id="copyright">Copyright©&nbsp;<img src="./スポーツの国を、楽しもう。_files/logo.png" alt="Topに戻ります。" title="Topに戻る" class="logo">&nbsp;All&nbsp;Rights&nbsp;Reserved.</p>
+  </footer>
+  
+  
+
+  <!-- 東京2020までのカウントダウン用js -->
+  <script type="text/javascript">
+    //タイマー変数を定義
+    var timerId;
+
+    //カウントダウンの終了日を定義
+    var endDateTime   = new Date("2020/07/24 20:00:00");
+
+    function countDownTimer() {
+    //現在日時を取得
+    var nowDateTime = new Date();
+
+    //基準となる差分秒を算出(ついでにミリ秒→秒に)
+    var diff = Math.floor((endDateTime - nowDateTime) / 1000);
+
+    // 残り時間が0秒以下になったらカウントダウン停止
+    if (diff <= 0) {
+      $311('#TimeRemaining').html("東京オリンピックは開催中です！");
+      return;
+    }
+
+    // 基準となる日秒を定義
+    var daySec = 24 * 60 * 60;
+
+    // 残日数を算出
+    var Day = Math.floor(diff / daySec);
+
+    // 上記Day分を除去した残秒数を算出
+    // (diff % daySec)は(diff - (Day * daySec))と同じ
+    var diffSecExcDay = diff % daySec;
+
+    // 残時間を算出
+    var Hour = Math.floor(diffSecExcDay / (60 * 60));
+
+    // 残分を算出
+    var Min = Math.floor(diffSecExcDay / 60) % 60;
+
+    // 残秒を算出
+    var Sec = diffSecExcDay % 60 % 60;
+
+    // TimeRemainingに下記htmlを挿入
+    $311('#TimeRemaining').html(""+ Day +"日"+ Hour + "時間"+ Min +"分"+ Sec + "秒");
+
+    // 指定した一定時間後に関数countDownTimer()を呼び出す
+    timerId = setTimeout('countDownTimer()', 1000);
+    }
+
+    $311(function() {
+      // まず最初に関数countDownTimer()を一度実行
+      countDownTimer();
+    });
+  </script>
+<div id="cboxOverlay" style="display: none;"></div><div id="colorbox" class="" role="dialog" tabindex="-1" style="display: none;"><div id="cboxWrapper"><div><div id="cboxTopLeft" style="float: left;"></div><div id="cboxTopCenter" style="float: left;"></div><div id="cboxTopRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxMiddleLeft" style="float: left;"></div><div id="cboxContent" style="float: left;"><div id="cboxTitle" style="float: left;"></div><div id="cboxCurrent" style="float: left;"></div><button type="button" id="cboxPrevious"></button><button type="button" id="cboxNext"></button><button type="button" id="cboxSlideshow"></button><div id="cboxLoadingOverlay" style="float: left;"></div><div id="cboxLoadingGraphic" style="float: left;"></div></div><div id="cboxMiddleRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxBottomLeft" style="float: left;"></div><div id="cboxBottomCenter" style="float: left;"></div><div id="cboxBottomRight" style="float: left;"></div></div></div><div style="position: absolute; width: 9999px; visibility: hidden; display: none; max-width: none;"></div></div></body></html>

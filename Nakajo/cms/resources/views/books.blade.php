@@ -72,7 +72,7 @@
                     </thead>
                     <!-- テーブル本体 -->
                     <tbody>
-                         @foreach ($books as $book)
+                         @forelse ($books as $book)
                             <tr>
                                 <!-- 本タイトル -->
                                 <td class="table-text">
@@ -104,7 +104,14 @@
                                 </td>
                                 
                             </tr>
-                         @endforeach
+                        @empty
+                        <tr>
+                            <td>
+                                No posts yet
+                            </td>
+                        <tr>
+                         @endforelse
+                         
                     </tbody>
                 </table>
             </div>
@@ -121,7 +128,3 @@
    
     </div>
 @endsection
-
-
-
-
