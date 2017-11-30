@@ -280,16 +280,16 @@ aside {
   margin: 15px auto;
 }
 
-img.advert_top {
+img .advert_top {
   width: 160px;
 }
 
-img.advert_middle {
+img .advert_middle {
   width: 160px;
   margin: 15px auto;
 }
 
-div.advert {
+div .advert {
   width: 160px;
   margin-bottom: 15px;
 }
@@ -304,11 +304,11 @@ ul {
 }
 
 
-/* footer部分*/
+/* footer部分
 footer{
 
 }
-
+**************/
 footer ul{
   text-decoration: none;
   display: flex;
@@ -483,4 +483,16 @@ div .login_submit {
 	clear: both;
 	padding-top: 10px;
 	text-align: center;
+}
+
+
+/***********SNS*******************/
+.home-movie{
+  width: 1120;
+  height: 630;
+  /*text-align: center;*/
+}
+.sns-home{
+  width: auto;
+  max-height: 30px;
 }

@@ -40,6 +40,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('/setting', 'SettingController@setting');
+
+
+
 
 //投稿処理のコントローラー
 Route::get('/post', 'PostsController@post');
