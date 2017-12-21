@@ -25,7 +25,8 @@
   export default {
     data () {
       return {
-        'catUrl': null
+        'catUrl': null,
+        'title': null
       }
     },
     mounted () {
@@ -51,5 +52,8 @@
   .waiting {
     padding: 10px;
     color: #555;
+  }
+  img {
+    max-width:100%;
   }
 </style>

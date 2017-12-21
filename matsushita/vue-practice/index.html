@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+<div id="exercise">
+    <!-- 1) Fill the <p> below with your Name and Age - using Interpolation -->
+    <p>VueJS is pretty cool -  {{ name }}({{age}})</p>
+    <!-- 2) Output your age, multiplied by 3 -->
+    <p>{{ multiple }}</p>
+    <!-- 3) Call a function to output a random float between 0 and 1 (Math.random()) -->
+    <p>{{ random() }}</p>
+    <!-- 4) Search any image on Google and output it here by binding the "src" attribute -->
+    <div>
+        <img v-bind:src="image" style="width:100px;height:100px">
+    </div>
+    <!-- 5) Pre-Populate this input with your name (set the "value" attribute) -->
+    <div>
+        <input v-bind:value="name" type="text">
+    </div>
+</div>
+<script>
+    new Vue({
+        el: '#exercise',
+        data: {
+            title: 'Hello World!',
+            name: "Takeshi",
+            age: "32",
+            image: "https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/68dd54ca-60cf-4ef7-898b-26d7cbe48ec7/10-dithering-opt.jpg"
+        },
+        methods: {
+            changeTitle: function(event) {
+                this.title = event.target.value;
+            },
+            random : function() {
+                return Math.random();
+            }
+        },
+        computed: {
+            multiple: function() {
+                return this.age * 3;
+            }
+        }
+    });
+</script>
+</body>
+</html>
