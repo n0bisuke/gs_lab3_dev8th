@@ -5,7 +5,21 @@
     </div>
 
     <div class="container">
-      <pp-menu></pp-menu>
+      <router-view></router-view>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-4">
+          <router-view name="ordering-guide"></router-view>
+        </div>
+        <div class="col-sm-12 col-md-4">
+          <router-view name="delivery"></router-view>
+        </div>
+        <div class="col-sm-12 col-md-4">
+          <router-view name="history"></router-view>
+        </div>
+      </div>
     </div>
 
     <div class="container">
@@ -17,18 +31,28 @@
 <script>
   import Header from './components/Header.vue'
   import Footer from './components/Footer.vue'
-  import Home from './components/Home.vue'
-  import Menu from './components/Menu.vue'
+  import { dbMenuRef, dbOrdersRef } from './firebaseConfig'
 export default {
     components: {
       ppHeader: Header,
       ppFooter: Footer,
-      ppHome: Home,
-      ppMenu: Menu
+    },
+    created () {
+      this.$store.dispatch('setMenuRef', dbMenuRef),
+        this.$store.dispatch('setOrdersRef', dbOrdersRef)
     }
-
 }
 </script>
 
 <style lang="scss">
+  header, footer {
+    background: #eceeef;
+    padding: 40px 0;
+    font-size: 1.2em;
+  }
+  .card {
+    background-color: #69ab64;
+    margin: 20px 0;
+    border-radius: 0;
+  }
 </style>

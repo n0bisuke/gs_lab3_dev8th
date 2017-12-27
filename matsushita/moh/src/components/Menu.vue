@@ -9,89 +9,85 @@
             <th>Add to basket</th>
           </tr>
         </thead>
-        <tbody v-for="item in getMenuItems">
+        <tbody v-for="item, idx in getMenuItems" :key="item['.key']">
           <tr>
             <td><strong>{{ item.name }}</strong></td>
           </tr>
 
           <tr v-for="option in item.options">
             <td>{{ option.size }}</td>
-            <td>{{ option.price }}</td>
+            <td>{{ option.price | currency }}</td>
             <td><button class="btn btn-sm btn-outline-success"
                         type="button"
                         @click="addToBasket( item, option )">+</button></td>
           </tr>
         </tbody>
       </table>
-
     </div>
+
+
+    <!--shopping basket-->
     <div class="col-sm-12 col-md-6">
-      <table class="table">
-        <thead class="thead-default">
-        <tr>
-          <th>Quantity</th>
-          <th>Item</th>
-          <th>Total</th>
-        </tr>
-        </thead>
-        <tbody v-for="item, idx in getMenuItems" :key="'pizza'+idx">
-        <tr>
-          <td><button class="btn btn-sm" type="button">-</button></td>
-          <span>1-</span>
-          <td><button class="btn btn-sm" type="button">+</button></td>
-          <td>Margherita 9"</td>
-          <td>9.55</td>
-        </tr>
-        </tbody>
-      </table>
+      <div v-if="basket.length > 0">
+        <table class="table">
+          <thead class="thead-default">
+          <tr>
+            <th>Quantity</th>
+            <th>Item</th>
+            <th>Total</th>
+          </tr>
+          </thead>
+          <tbody v-for="item in basket">
+          <tr>
+            <td>
+              <button class="btn btn-sm"
+                      type="button"
+                      @click = "decreaseQuantity(item)">-</button>
+              <span>{{item.quantity}}-</span>
+              <button class="btn btn-sm"
+                      type="button"
+                      @click = "increaseQuantity(item)">+</button>
+            </td>
+            <td>{{ item.name }} {{item.size}}</td>
+            <td>{{ item.price * item.quantity | currency }}</td>
+          </tr>
+          </tbody>
+        </table>
+        <p>Order total:{{ total | currency }}</p>
+        <button class="btn btn-success btn-block" @click = "addNewOrder">Place Order</button>
+      </div>
+      <div v-else>
+        <p>{{ basketText }}</p>
+      </div>
     </div>
 
   </div>
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
+  import { dbOrdersRef } from '../firebaseConfig'
   export default  {
     data() {
       return {
         basket: [],
-        getMenuItems: {
-          1: {
-            'name': 'Margherita',
-            'description': 'A delicious tomato based pizza topped with mozzarella',
-            'options': [{
-              'size': 9,
-              'price': 6.95
-            }, {
-              'size': 12,
-              'price': 10.95
-            }]
-          },
-          2: {
-            'name': 'Pepperoni',
-            'description': 'A delicious tomato based pizza topped with mozzarella and pepperoni',
-            'options': [{
-              'size': 9,
-              'price': 7.95
-            }, {
-              'size': 12,
-              'price': 12.95
-            }]
-          },
-          3: {
-            'name': 'Ham and Pineapple',
-            'description': 'A delicious tomato based pizza topped with mozzarella, ham and pineapple',
-            'options': [{
-              'size': 9,
-              'price': 7.95
-            }, {
-              'size': 12,
-              'price': 12.95
-            }]
-          }
-        }
+        basketText: 'Your basket is empty',
       }
     },
-    method: {
+    computed: {
+      ...mapGetters([
+        'getMenuItems'
+      ]),
+      total() {
+        var totalCost = 0;
+        for( var items in this.basket) {
+          var individualItem = this.basket[items];
+          totalCost += individualItem.quantity * individualItem.price
+        }
+        return totalCost
+      }
+    },
+    methods: {
       addToBasket(item, option) {
         this.basket.push({
           name: item.name,
@@ -99,7 +95,26 @@
           size:option.size,
           quantity: 1
         })
+      },
+      removeFromBasket(item) {
+        this.basket.splice(this.basket.indexOf(item),1);
+      },
+      increaseQuantity(item) {
+        item.quantity++;
+      },
+      decreaseQuantity(item) {
+        item.quantity--;
+        if(item.quantity === 0) {
+          this.removeFromBasket(item);
+        }
+      },
+      addNewOrder() {
+//        this.$store.commit('addOrder', this.basket)
+        dbOrdersRef.push(this.basket)
+        this.basket = []
+        this.basketText = "Thank you, your order has been placed! :)"
       }
+
     }
   }
 </script>
