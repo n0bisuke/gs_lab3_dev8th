@@ -1,0 +1,7 @@
+http-server -c-1
+通常キャッシュしないサーバーを立てる
+
+
+only https
+
+preventDefalt

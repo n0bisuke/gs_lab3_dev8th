@@ -1,0 +1,39 @@
+{
+  "name": "moh_nuxt",
+  "version": "1.0.0",
+  "description": "Nuxt.js project",
+  "author": "takeshi_matsushita <>",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "precommit": "npm run lint"
+  },
+  "dependencies": {
+    "@nuxtjs/onesignal": "^2.0.0",
+    "@nuxtjs/pwa": "^2.0.5",
+    "firebase": "^4.8.1",
+    "node-sass": "^4.7.2",
+    "nuxt": "^1.0.0-rc11",
+    "nuxt-firebase": "^0.0.3",
+    "nuxt-sass-resources-loader": "^1.1.0",
+    "sass-loader": "^6.0.6",
+    "scss-loader": "^0.0.1",
+    "vue-carousel": "^0.6.5",
+    "vue-tiny-slider": "^0.1.4"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "eslint": "^4.3.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-html": "^3.1.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1"
+  }
+}
