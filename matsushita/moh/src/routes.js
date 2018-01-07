@@ -21,7 +21,10 @@ export const routes = [
     }
   },
   {path: '/menu', name: 'menuLink', component: Menu },
-  {path: '/admin', name: 'adminLink',  component: Admin, beforeEnter: (to, from, next) => {
+  {path: '/admin',
+    name: 'adminLink',
+    component: Admin,
+    beforeEnter: (to, from, next) => {
     alert('This area is for authorised users only, Please login to continue')
     next();
   }},
