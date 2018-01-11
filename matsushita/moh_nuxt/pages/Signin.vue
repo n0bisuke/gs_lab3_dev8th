@@ -26,7 +26,16 @@
 </template>
 
 <script>
-  import firebase from '~/plugins/firebase'
+  import Firebase from '~/plugins/firebase'
+  import { store } from '~/store/index'
+  Firebase.auth().onAuthStateChanged(function (user) {
+    console.log(user)
+    if (user) {
+      store.dispatch('setUser', user)
+    } else {
+      store.dispatch('setUser', null)
+    }
+  })
   export default {
     name: 'Signin',
     data () {
@@ -37,7 +46,7 @@
     },
     methods: {
       signIn () {
-        firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
+        Firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
           user => {
             alert('success!')
             this.$router.push('/')

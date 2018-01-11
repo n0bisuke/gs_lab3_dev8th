@@ -3,7 +3,7 @@ module.exports = {
   ** Headers of the page
   */
   router: {
-    middleware: 'auth'
+    middleware: 'auth',
   },
   head: {
     titleTemplate : '%s | My Other Half',

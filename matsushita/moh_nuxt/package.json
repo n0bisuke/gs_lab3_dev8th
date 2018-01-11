@@ -15,6 +15,7 @@
   "dependencies": {
     "@nuxtjs/onesignal": "^2.0.0",
     "@nuxtjs/pwa": "^2.0.5",
+    "babel-preset-stage-3": "^6.24.1",
     "firebase": "^4.8.1",
     "node-sass": "^4.7.2",
     "nuxt": "^1.0.0-rc11",
@@ -23,7 +24,8 @@
     "sass-loader": "^6.0.6",
     "scss-loader": "^0.0.1",
     "vue-carousel": "^0.6.5",
-    "vue-tiny-slider": "^0.1.4"
+    "vue-tiny-slider": "^0.1.4",
+    "vuexfire": "^2.3.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",

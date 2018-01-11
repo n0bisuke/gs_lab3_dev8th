@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "moh-apps",
+    "staging": "mohapps-af117"
+  }
+}

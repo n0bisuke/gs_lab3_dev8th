@@ -1,0 +1,19 @@
+//{
+//  "rules": {
+//    ".read": "root.child('admin-users').child(auth.uid).exists()",
+//    ".write": "root.child('admin-users').child(auth.uid).exists()",
+//    "user-data": {
+//      ".read": "auth != null",
+//      "$userId": {
+//        ".write": "auth.uid == $userId",
+//      }
+//    }
+//  }
+//}
+
+{
+  "rules": {
+    ".read": true,
+    ".write":  "auth != null"
+  }
+}

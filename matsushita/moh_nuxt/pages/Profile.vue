@@ -4,7 +4,7 @@
       <div class="profile-photo">
         <div class="profile-photo__list">
           <carousel :perPage="1" paginationActiveColor="#42b983" paginationColor="#b2ebd1" :paginationSize='5' easing="linear">
-            <slide>
+            <slide v-for="" >
               <img src="http://dummyimage.com/320x320" alt="プロフィール写真">
             </slide>
             <slide>
@@ -46,10 +46,16 @@
 <script>
   import { Carousel, Slide } from 'vue-carousel'
   export default {
-    data: {
+    data () {
+      return {
+
+      }
     },
     head: {
       title: 'Profile'
+    },
+    meta: {
+      requiresAuth: true
     },
     components: {
       Carousel,

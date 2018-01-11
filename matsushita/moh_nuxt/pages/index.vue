@@ -12,22 +12,34 @@
         </div>
       </div>
     </section>
+    <button @click="signOut">Sign out</button>
   </div>
 </template>
 
 
 
 <script>
-import Logo from '~/components/Logo.vue'
+  import Logo from '~/components/Logo.vue'
+  import firebase from 'firebase'
 
-export default {
-  components: {
-    Logo
-  },
-  head: {
-    title: 'Home'
+  export default {
+    components: {
+      Logo
+    },
+    head: {
+      title: 'Home'
+    },
+    meta: {
+      requiresAuth: false
+    },
+    methods: {
+      signOut () {
+        firebase.auth().signOut().then(() => {
+          this.$router.push('/')
+        })
+      }
+    }
   }
-}
 </script>
 
 <style>

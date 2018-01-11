@@ -24,6 +24,7 @@ export const routes = [
   {path: '/admin',
     name: 'adminLink',
     component: Admin,
+    meta: { requiresAuth: true },
     beforeEnter: (to, from, next) => {
     alert('This area is for authorised users only, Please login to continue')
     next();
