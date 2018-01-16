@@ -40,6 +40,7 @@
         firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
           user => {
             alert('Create account: ', user.email)
+            this.$router.push('/')
           },
           err => {
             alert(err.message)

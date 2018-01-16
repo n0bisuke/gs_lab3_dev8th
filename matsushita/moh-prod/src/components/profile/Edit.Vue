@@ -6,8 +6,8 @@
     <div class="field">
       <label class="label">Username</label>
       <div class="control has-icons-left has-icons-right">
-        <p v-model="getUser"></p>
-        <input class="input" type="text" placeholder="お名前" v-model="user.name">
+        <p></p>
+        <input class="input" type="text" placeholder="お名前" :value="getUser.displayName" @input="updateUserDisplayName">
         <span class="icon is-small is-left">
       <i class="fas fa-user"></i>
     </span>
@@ -21,7 +21,7 @@
     <div class="field">
       <label class="label">Email</label>
       <div class="control has-icons-left has-icons-right">
-        <input class="input" type="email" placeholder="Email input" value="">
+        <input class="input" type="email" placeholder="Email input" v-model="currentUser.email">
         <span class="icon is-small is-left">
       <i class="fas fa-envelope"></i>
     </span>
@@ -36,7 +36,7 @@
       <label class="label">Gender</label>
       <div class="control">
         <div class="select">
-          <select>
+          <select :value="getUser.gender" @input="updateUserGender">
             <option v-for="gender in genderOptions" v-bind:value="gender.value">{{ gender.text }}</option>
           </select>
         </div>
@@ -46,20 +46,20 @@
     <div class="field">
       <label class="label">Age</label>
       <div class="control">
-        <input class="input" type="number" placeholder="" v-model.number="user.age">
+        <input class="input" type="number" placeholder="" :value="getUser.age" @input="updateUserAge">
       </div>
     </div>
 
     <div class="field">
-      <label class="label"></label>
+      <label class="label">紹介文</label>
       <div class="control">
-        <textarea class="textarea" v-model="user.description" placeholder="性格など""></textarea>
+        <textarea class="textarea" :value="getUser.description" @input="updateUserDesc" placeholder="性格など"></textarea>
       </div>
     </div>
 
     <div class="field is-grouped">
       <div class="control">
-        <button class="button is-primary" @click="addNewUser">Submit</button>
+        <button class="button is-primary" @click="saveUserProfile" type="button">Submit</button>
       </div>
       <div class="control">
         <button class="button is-text">Cancel</button>
@@ -69,8 +69,10 @@
 </template>
 
 <script>
-  import { dbUsersRef } from '../../main'
-  import { mapGetters } from 'vuex'
+  import firebase from 'firebase'
+  import { firebaseApp } from '../../main'
+  import { mapGetters ,mapActions } from 'vuex'
+
   export default {
     data() {
       return {
@@ -78,30 +80,82 @@
           { text: '男の子', value: 'male' },
           { text: '女の子', value: 'female' }
         ],
-        user: {
-          'uid': '',
-          'name': '',
-          'description': '',
-          'age': '',
-          'gender': '',
-          'likes': [
-            {
-              'likedId': '',
-            }
-          ]
-        }
+//        user: {
+//          'displayName': firebase.auth().currentUser.displayName,
+//          'description': '',
+//          'age': '',
+//          'gender': '',
+//          'likes': [
+//            {
+//              'likedId': '',
+//            }
+//          ]
+//        }
       }
     },
     computed: {
-      ...mapGetters ([
-        'gerUser',
-        'auth/user'
+      currentUser: function() {
+        return this.$store.getters['auth/user']
+      },
+      ...mapGetters([
+        'getUser'
       ])
     },
+//    created () {
+//      const userID = firebase.auth().currentUser.uid
+//      const db = firebaseApp.database()
+//      const dbUsersRef = db.ref('/users/' + userID)
+//      this.$store.dispatch('setUsersRef', dbUsersRef)
+//    },
     methods: {
-      addNewUser() {
-        dbUsersRef.push(this.user)
-        this.user = {}
+//      addNewUser() {
+//        const user = firebase.auth().currentUser;
+//        user.updateProfile({
+//          displayName: this.currentUser.displayName,
+//          photoURL: this.currentUser.photoURL,
+//        }).then(function() {
+//          alert('Success!')
+//        }).catch(function(error) {
+//          alert(error.message)
+//        })
+//      },
+//      saveUserData () {
+//        firebase.database().ref('users/' + this.currentUser.uid).set(
+//          this.getUser
+//        ).then( function() {
+//          alert('Success')
+//        }).catch(function(error) {
+//          alert(error)
+//        })
+//      },
+      saveUserProfile() {
+//        this.$store.commit('updateUser', this.user)
+        const obj = this.getUser
+        delete obj['.key']
+        delete obj['.value']
+        console.log(obj)
+        firebase.database().ref('/users/' + this.currentUser.uid ).set(
+          obj
+        ).then( function() {
+          alert('Success')
+        }).catch(function(error) {
+          alert(error)
+        })
+      },
+      updateUser () {
+        this.user = this.getUser.user
+      },
+      updateUserAge (e) {
+        this.$store.commit('updateUserAge', e.target.value)
+      },
+      updateUserDesc (e) {
+        this.$store.commit('updateUserDesc', e.target.value)
+      },
+      updateUserDisplayName (e) {
+        this.$store.commit('updateUserDisplayName', e.target.value)
+      },
+      updateUserGender(e) {
+        this.$store.commit('updateUserGender', e.target.value)
       }
     }
   }

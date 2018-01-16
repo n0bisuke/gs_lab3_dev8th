@@ -18,8 +18,8 @@
     </div>
     <div class="profile-info">
       <div class="profile-info__head">
-        <span class="name">Tama </span>
-        <span class="age">(2歳)</span>
+        <span class="name">{{ getUser.displayName }}</span>
+        <span class="age">({{ getUser.age }})</span>
       </div>
       <div class="profile-info__sub">
         <!--<span class="sex">オス</span>-->
@@ -29,9 +29,7 @@
     </div>
 
     <div class="profile-discription">
-      <p>
-        性格は、温厚で無駄吠えしません。
-      </p>
+      <p>{{ getUser.description }}</p>
     </div>
   </div>
 </template>
@@ -51,7 +49,8 @@
    },
     computed: {
       ...mapGetters ([
-          'user'
+          'user',
+          'getUser'
       ])
     },
     components: {

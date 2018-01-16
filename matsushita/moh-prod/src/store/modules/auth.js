@@ -19,13 +19,17 @@ const auth = {
           let profile = {
             auth: false,
             uid: '',
-            email: ''
+            email: '',
+            photoURL: '',
+            displayName: '',
           }
           if (user) {
             profile = {
               auth: true,
               uid: user.uid,
-              email: user.email
+              email: user.email,
+              photoURL: user.photoURL,
+              displayName: user.displayName,
             }
           }
           commit('set', profile)

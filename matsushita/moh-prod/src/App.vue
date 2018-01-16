@@ -13,7 +13,8 @@
 <script>
   import Header from './components/Header.vue'
   import Footer from './components/Footer.vue'
-  import { dbMenuRef, dbOrdersRef } from './firebaseConfig'
+  import firebase from 'firebase'
+  import { firebaseApp } from './main'
   export default {
     components: {
       ppHeader: Header,
@@ -22,8 +23,13 @@
     name: 'app',
     data () {
       return {
-        msg: 'Welcome to Your Vue.js App'
       }
+    },
+    created () {
+      const userID = firebase.auth().currentUser.uid
+      const db = firebaseApp.database()
+      const dbUsersRef = db.ref('/users/' + userID)
+      this.$store.dispatch('setUsersRef', dbUsersRef)
     }
   }
 </script>

@@ -9,10 +9,11 @@ import { fireBaseConfig } from './firebaseConfig'
 
 
 // Firebase初期化
-const firebaseApp = firebase.initializeApp(fireBaseConfig);
-const db = firebaseApp.database();
-export const dbUsersRef = db.ref('users');
-export const dbOrdersRef = db.ref('orders');
+export const firebaseApp = firebase.initializeApp(fireBaseConfig);
+// const db = firebaseApp.database();
+// const userID = 'OcOH4RdjLNb4rHmr59csCuVtPPO2';
+// export const dbUsersRef = db.ref('/users/' + userID);
+// export const dbOrdersRef = db.ref('orders');
 
 // 認証を初期化
 store.dispatch('auth/init').then(() => {

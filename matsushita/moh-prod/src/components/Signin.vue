@@ -24,15 +24,16 @@
   </div>
   <div class="button-field" v-else >
     <div class="control">
-      <p>{{ message }}</p>
+      <p>{{ getUser.displayName }}</p>
       <button class="button is-info is-rounded is-medium" @click="signOut">SIGN OUT</button>
     </div>
   </div>
 </template>
 <script>
   import firebase from 'firebase'
+  import { firebaseApp } from '../main'
   import { store } from '../store/index.js'
-  import { mapGetters } from 'vuex'
+  import { mapGetters ,mapActions } from 'vuex'
   export default {
     name: 'Signin',
     data () {
@@ -41,6 +42,12 @@
         password: '',
         message: ''
       }
+    },
+    created () {
+      const userID = firebase.auth().currentUser.uid
+      const db = firebaseApp.database()
+      const dbUsersRef = db.ref('/users/' + userID)
+      this.$store.dispatch('setUsersRef', dbUsersRef)
     },
     methods: {
       signIn:function ()  {
@@ -65,12 +72,15 @@
     computed: {
       currentUser: function() {
          return this.$store.getters['auth/user'].auth
-      }
+      },
+      ...mapGetters([
+        'getUser'
+      ])
     },
     created() {
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
-          this.message = `${user.email}でログイン中`
+          this.message = `${user.displayName}でログイン中`
         } else {
           this.message = `ログインしてない`
         }
