@@ -2,5 +2,7 @@ $blue: #72d0eb;
 $pink: #ffb3b3;
 $pink-invert: #fff;
 
+@import 'components/base';
+@import 'components/mixins';
 @import '~bulma/bulma';
 

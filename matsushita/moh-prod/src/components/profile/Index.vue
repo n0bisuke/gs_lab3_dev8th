@@ -3,13 +3,13 @@
     <div class="profile-photo-slide">
       <carousel :perPage="1" paginationActiveColor="#42b983" paginationColor="#b2ebd1" :paginationSize='5' easing="linear">
         <slide v-for="" >
-          <img src="http://dummyimage.com/200x200" alt="プロフィール写真">
+          <img src="../../assets/images/dog01.png" alt="プロフィール写真">
         </slide>
         <slide>
-          <img src="" alt="プロフィール写真">
+          <img src="../../assets/images/dog01.png" alt="プロフィール写真">
         </slide>
         <slide>
-          <img src="http://dummyimage.com/200x200" alt="プロフィール写真">
+          <img src="../../assets/images/dog01.png" alt="プロフィール写真">
         </slide>
       </carousel>
     </div>
