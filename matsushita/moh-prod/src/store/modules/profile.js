@@ -19,6 +19,9 @@ const mutations = {
   updateUserGender(state, userGender) {
     state.user.gender = userGender
   },
+  updateUserBreed(state, userBreed) {
+    state.user.breed = userBreed
+  },
 }
 
 

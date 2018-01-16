@@ -5,6 +5,7 @@
         <img src="../assets/images/logo-type.svg" alt="Moh" width="112" height="28">
       </a>
       <router-link :to="{ name: 'profileLink' }" tag="a" class="navbar-item">profile</router-link>
+      <router-link :to="{ name: 'profileEditLink' }" tag="a" class="navbar-item">edit profile</router-link>
       <router-link :to="{ name: 'chatListLink' }" tag="a" class="navbar-item">chat</router-link>
       <!--<router-link :to="{ name: 'chatDetailLink' }" tag="a" class="navbar-item"></router-link>-->
     </div>

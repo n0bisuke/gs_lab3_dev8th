@@ -33,6 +33,13 @@
     </div>
 
     <div class="field">
+      <label class="label">犬種</label>
+      <div class="control">
+        <input class="input" type="text" placeholder="" :value="getUser.breed" @input="updateUserBreed">
+      </div>
+    </div>
+
+    <div class="field">
       <label class="label">Gender</label>
       <div class="control">
         <div class="select">
@@ -60,9 +67,6 @@
     <div class="field is-grouped">
       <div class="control">
         <button class="button is-primary" @click="saveUserProfile" type="button">Submit</button>
-      </div>
-      <div class="control">
-        <button class="button is-text">Cancel</button>
       </div>
     </div>
   </form>
@@ -156,6 +160,9 @@
       },
       updateUserGender(e) {
         this.$store.commit('updateUserGender', e.target.value)
+      },
+      updateUserBreed(e) {
+        this.$store.commit('updateUserBreed', e.target.value)
       }
     }
   }

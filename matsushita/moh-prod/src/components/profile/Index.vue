@@ -14,12 +14,13 @@
       </carousel>
     </div>
     <div class="breed">
-      <span class="tag is-primary is-rounded">柴犬</span>
+      <span class="tag is-primary is-rounded">{{ getUser.breed }}</span>
     </div>
     <div class="profile-info">
       <div class="profile-info__head">
         <span class="name">{{ getUser.displayName }}</span>
-        <span class="age">({{ getUser.age }})</span>
+        <span class="age">({{ getUser.age }}歳)</span>
+        <span class="gender">{{ setGender }}</span>
       </div>
       <div class="profile-info__sub">
         <!--<span class="sex">オス</span>-->
@@ -44,14 +45,22 @@
             images: {
               imageUrl: 'http://dummyimage.com/200x140'
             }
-        }
+        },
+        gender: ''
       }
    },
     computed: {
       ...mapGetters ([
           'user',
           'getUser'
-      ])
+      ]),
+      setGender() {
+        if(this.gender === 'male') {
+          return '男の子'
+        }else {
+          return '女の子'
+        }
+      }
     },
     components: {
       Carousel,
@@ -91,5 +100,6 @@
   }
   .breed {
     text-align: center;
+    margin-bottom:.5rem;
   }
 </style>

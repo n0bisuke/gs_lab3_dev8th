@@ -9,3 +9,7 @@ $borerColor: #ddd;
 
 $primaryBgColor: #0e3741;
 $linkLightColor: #fff;
+
+$family-gothic: -apple-system,BlinkMacSystemFont,"Helvetica Neue","游ゴシック Medium",YuGothic,YuGothicM,"Hiragino Kaku Gothic ProN",メイリオ,Meiryo,sans-serif;
+// Use the new serif family
+$family-primary: $family-gothic;
