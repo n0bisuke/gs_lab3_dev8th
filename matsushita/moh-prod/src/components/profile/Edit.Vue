@@ -61,6 +61,27 @@
       </div>
     </div>
 
+    <div class="field">
+      <label class="label">写真URL</label>
+      <div class="control">
+        <input class="input" type="text" placeholder="" :value="getUser.photoUrl1" @input="updateUserPhotoUrl1">
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">写真URL2</label>
+      <div class="control">
+        <input class="input" type="text" placeholder="" :value="getUser.photoUrl2" @input="updateUserPhotoUrl2">
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">写真URL3</label>
+      <div class="control">
+        <input class="input" type="text" placeholder="" :value="getUser.photoUrl2" @input="updateUserPhotoUrl3">
+      </div>
+    </div>
+
     <div class="field is-grouped">
       <div class="control">
         <button class="button is-primary" @click="saveUserProfile" type="button">Submit</button>
@@ -160,6 +181,15 @@
       },
       updateUserBreed(e) {
         this.$store.commit('updateUserBreed', e.target.value)
+      },
+      updateUserPhotoUrl1(e) {
+        this.$store.commit('updateUserPhotoUrl1', e.target.value)
+      },
+      updateUserPhotoUrl2(e) {
+        this.$store.commit('updateUserPhotoUrl2', e.target.value)
+      },
+      updateUserPhotoUrl3(e) {
+        this.$store.commit('updateUserPhotoUrl3', e.target.value)
       }
     }
   }

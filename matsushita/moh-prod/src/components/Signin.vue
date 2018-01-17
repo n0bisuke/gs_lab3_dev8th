@@ -1,4 +1,5 @@
 <template>
+  <!--ログインしてない-->
   <div class="sign-in" v-if="!currentUser">
     <div class="field">
       <p class="control has-icons-left has-icons-right">
@@ -22,19 +23,21 @@
       </p>
     </div>
   </div>
+  <!--ログインしてる-->
   <div class="is-loggedIn" v-else>
     <div class="" v-for="partner, idx in getPartners" :key="partner['.key']">
       <div class="profile-wrap">
         <div class="profile-photo-slide">
           <carousel :perPage="1" paginationActiveColor="#42b983" paginationColor="#b2ebd1" :paginationSize='5' easing="linear">
-            <slide v-for="" >
-              <img src="../assets/images/dog01.png" alt="プロフィール写真">
-            </slide>
             <slide>
-              <img src="../assets/images/dog02.jpg" alt="プロフィール写真">
+              <img v-if="partner.photoUrl1" v-bind:src="partner.photoUrl1" alt="プロフィール写真">
+              <img src="http://dummyimage.com/200x140" alt="" v-else>
             </slide>
-            <slide>
-              <img src="../assets/images/dog03.jpg" alt="プロフィール写真">
+            <slide v-if="partner.photoUrl2">
+              <img v-bind:src="partner.photoUrl2" alt="プロフィール写真">
+            </slide>
+            <slide v-if="partner.photoUrl3">
+              <img v-bind:src="partner.photoUrl2" alt="プロフィール写真">
             </slide>
           </carousel>
         </div>
@@ -155,13 +158,44 @@
 </script>
 
 <style lang="scss" scopped>
+  @import "../assets/sass/setting";
   .sign-in {
     padding: .5rem;
     max-width: 726px;
     margin:0 auto;
   }
-  .login-user {
 
+  .profile-photo-slide {
+    max-width: $widthTab;
+    margin: 0 auto;
+  }
+  .VueCarousel-slide {
+    img {
+      width: 100%;
+    }
+  }
+  .profile-info {
+    padding: 0 0.5rem;
+    text-align: center;
+    .name {
+      font-size: 20px;
+    }
+  }
+  .profile-info__sub {
+    .area {
+      font-size:12px;
+    }
+  }
+  .profile-discription {
+    padding:.5rem;
+  }
+  .VueCarousel-pagination {
+    position: absolute;
+    bottom: 10px;
+  }
+  .breed {
+    text-align: center;
+    margin-bottom:.5rem;
   }
   .button-field {
     .control {

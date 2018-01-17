@@ -22,6 +22,15 @@ const mutations = {
   updateUserBreed(state, userBreed) {
     state.user.breed = userBreed
   },
+  updateUserPhotoUrl1(state, userPhotoUrl1) {
+    state.user.photoUrl1 = userPhotoUrl1
+  },
+  updateUserPhotoUrl2(state, userPhotoUrl2) {
+    state.user.photoUrl2 = userPhotoUrl2
+  },
+  updateUserPhotoUrl3(state, userPhotoUrl3) {
+    state.user.photoUrl3 = userPhotoUrl3
+  }
 }
 
 
