@@ -29,7 +29,9 @@
       const userID = firebase.auth().currentUser.uid
       const db = firebaseApp.database()
       const dbUsersRef = db.ref('/users/' + userID)
+      const dbPartnersRef = db.ref('partners')
       this.$store.dispatch('setUsersRef', dbUsersRef)
+      this.$store.dispatch('setPartnersRef', dbPartnersRef)
     }
   }
 </script>

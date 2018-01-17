@@ -22,11 +22,8 @@
       <label class="label">Email</label>
       <div class="control has-icons-left has-icons-right">
         <input class="input" type="email" placeholder="Email input" v-model="currentUser.email">
-        <span class="icon is-small is-left">
-      <i class="fas fa-envelope"></i>
-    </span>
-        <span class="icon is-small is-right">
-      <i class="fas fa-exclamation-triangle"></i>
+        <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
+        <span class="icon is-small is-right"><i class="fas fa-exclamation-triangle"></i>
     </span>
       </div>
       <p class="help is-danger">This email is invalid</p>

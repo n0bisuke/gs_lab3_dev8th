@@ -22,32 +22,89 @@
       </p>
     </div>
   </div>
-  <div class="button-field" v-else >
-    <div class="control">
-      <p>{{ getUser.displayName }}</p>
-      <button class="button is-info is-rounded is-medium" @click="signOut">SIGN OUT</button>
+  <div class="is-loggedIn" v-else>
+    <div class="" v-for="partner, idx in getPartners" :key="partner['.key']">
+      <div class="profile-wrap">
+        <div class="profile-photo-slide">
+          <carousel :perPage="1" paginationActiveColor="#42b983" paginationColor="#b2ebd1" :paginationSize='5' easing="linear">
+            <slide v-for="" >
+              <img src="../assets/images/dog01.png" alt="プロフィール写真">
+            </slide>
+            <slide>
+              <img src="../assets/images/dog02.jpg" alt="プロフィール写真">
+            </slide>
+            <slide>
+              <img src="../assets/images/dog03.jpg" alt="プロフィール写真">
+            </slide>
+          </carousel>
+        </div>
+        <div class="breed">
+          <span class="tag is-primary is-rounded">{{ partner.breed }}</span>
+        </div>
+        <div class="profile-info">
+          <div class="profile-info__head">
+            <span class="name">{{ partner.displayName }}</span>
+            <span class="age">({{ partner.age }}歳)</span>
+            <!--<span class="gender">{{ setGender }}</span>-->
+          </div>
+          <div class="profile-info__sub">
+            <!--<span class="sex">オス</span>-->
+            <span class="area">東京都</span>
+          </div>
+          <hr>
+        </div>
+
+        <div class="profile-discription">
+          <p>{{ partner.description }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="button-field">
+      <div class="control">
+        <p class="login-user"><strong>{{ getUser.displayName }}</strong>でログイン中 </p>
+        <button class="button is-info is-rounded is-medium" @click="signOut">SIGN OUT</button>
+      </div>
     </div>
   </div>
+
+
 </template>
 <script>
   import firebase from 'firebase'
-  import { firebaseApp } from '../main'
+  import { firebaseApp, dbPartnersRef } from '../main'
   import { store } from '../store/index.js'
-  import { mapGetters ,mapActions } from 'vuex'
+  import { mapGetters } from 'vuex'
+  import { Carousel, Slide } from 'vue-carousel'
   export default {
     name: 'Signin',
     data () {
       return {
         email: '',
         password: '',
-        message: ''
+        message: '',
+        partners: [
+          {
+            uid:'OcOH4RdjLNb4rHmr59csCuVtPPO2',
+            displayName: '',
+            age:'5',
+            breed: 'ポメラニアン',
+            description: '大きなお耳につぶらな瞳のチビちゃん',
+            gender: 'male'
+          },
+          {
+            uid:'OcOH4RdjLNb4rHmr59csCuVtPPO2',
+            displayName: '',
+            age:'5',
+            breed: 'ポメラニアン',
+            description: '大きなお耳につぶらな瞳のチビちゃん',
+            gender: 'male'
+          }
+        ]
       }
     },
-    created () {
-      const userID = firebase.auth().currentUser.uid
-      const db = firebaseApp.database()
-      const dbUsersRef = db.ref('/users/' + userID)
-      this.$store.dispatch('setUsersRef', dbUsersRef)
+    components: {
+      Carousel,
+      Slide
     },
     methods: {
       signIn:function ()  {
@@ -71,10 +128,11 @@
     },
     computed: {
       currentUser: function() {
-         return this.$store.getters['auth/user'].auth
+        return this.$store.getters['auth/user'].auth
       },
       ...mapGetters([
-        'getUser'
+        'getUser',
+        'getPartners'
       ])
     },
     created() {
@@ -85,6 +143,13 @@
           this.message = `ログインしてない`
         }
       })
+      const userID = firebase.auth().currentUser.uid
+      const db = firebaseApp.database()
+      const dbUsersRef = db.ref('/users/' + userID)
+      const dbPartnersRef = db.ref('users');
+      console.log(dbUsersRef);
+      this.$store.dispatch('setUsersRef', dbUsersRef)
+      this.$store.dispatch('setPartnersRef', dbPartnersRef)
     }
   }
 </script>
@@ -94,6 +159,9 @@
     padding: .5rem;
     max-width: 726px;
     margin:0 auto;
+  }
+  .login-user {
+
   }
   .button-field {
     .control {
