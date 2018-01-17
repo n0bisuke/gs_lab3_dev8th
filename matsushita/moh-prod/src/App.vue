@@ -15,6 +15,8 @@
   import Footer from './components/Footer.vue'
   import firebase from 'firebase'
   import { firebaseApp } from './main'
+  export const moment = require('moment');
+
   export default {
     components: {
       ppHeader: Header,

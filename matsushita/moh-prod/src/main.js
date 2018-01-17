@@ -8,9 +8,25 @@ import App from './App.vue'
 import { fireBaseConfig } from './firebaseConfig'
 
 
+
 // Firebase初期化
 export const firebaseApp = firebase.initializeApp(fireBaseConfig);
+//ストレージのルートのリファレンスを取得
+var storageRef = firebase.storage().ref();
+//ストレージのルートにあるsample.pngのリファレンスを取得
+var imgSample = storageRef.child('images/dog03.jpg');
+console.log(imgSample.getDownloadURL())
 
+
+// window.onload = function() {
+//   //htmlロード完了したらストレージの画像を表示してみる
+//   imgSample.getDownloadURL().then(function(url){
+//     document.getElementById("app").style.backgroundImage = "url("+url+")";
+//   }).catch(function(error) {
+//     // Handle any errors
+//     console.log(error);
+//   });
+// };
 
 
 // 認証を初期化

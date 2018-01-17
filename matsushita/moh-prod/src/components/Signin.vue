@@ -18,7 +18,7 @@
     </div>
     <div class="button-field">
       <p class="control">
-        <button class="button is-primary is-rounded is-medium" @click="signIn">LOGIN</button>
+        <button class="button is-primary is-medium" @click="signIn">LOGIN</button>
         <router-link :to="{ name: 'signUpLink' }" tag="a" class="">Create Account</router-link>
       </p>
     </div>
@@ -31,13 +31,13 @@
           <carousel :perPage="1" paginationActiveColor="#42b983" paginationColor="#b2ebd1" :paginationSize='5' easing="linear">
             <slide>
               <img v-if="partner.photoUrl1" v-bind:src="partner.photoUrl1" alt="プロフィール写真">
-              <img src="http://dummyimage.com/200x140" alt="" v-else>
+              <img src="http://placehold.jp/24/cccccc/ffffff/500x500.png?text=moh-app.site" v-else>
             </slide>
             <slide v-if="partner.photoUrl2">
               <img v-bind:src="partner.photoUrl2" alt="プロフィール写真">
             </slide>
             <slide v-if="partner.photoUrl3">
-              <img v-bind:src="partner.photoUrl2" alt="プロフィール写真">
+              <img v-bind:src="partner.photoUrl3" alt="プロフィール写真">
             </slide>
           </carousel>
         </div>
@@ -56,7 +56,14 @@
           </div>
           <hr>
         </div>
-
+        <div class="control-button">
+          <button v-bind:class="{'is-liked': isLiked }"
+                  v-on:click="{ isLiked =! isLiked }"
+                  class="button is-danger is-outlined is-rounded"
+                  v-bind:id="partner['.key']"
+                  @click="updateUsersLiked">
+            <i class="fas fa-heart"></i><span>{{ applyStatus }}</span></button>
+        </div>
         <div class="profile-discription">
           <p>{{ partner.description }}</p>
         </div>
@@ -65,7 +72,7 @@
     <div class="button-field">
       <div class="control">
         <p class="login-user"><strong>{{ getUser.displayName }}</strong>でログイン中 </p>
-        <button class="button is-info is-rounded is-medium" @click="signOut">SIGN OUT</button>
+        <button class="button is-info is-medium" @click="signOut">SIGN OUT</button>
       </div>
     </div>
   </div>
@@ -85,29 +92,23 @@
         email: '',
         password: '',
         message: '',
-        partners: [
-          {
-            uid:'OcOH4RdjLNb4rHmr59csCuVtPPO2',
-            displayName: '',
-            age:'5',
-            breed: 'ポメラニアン',
-            description: '大きなお耳につぶらな瞳のチビちゃん',
-            gender: 'male'
-          },
-          {
-            uid:'OcOH4RdjLNb4rHmr59csCuVtPPO2',
-            displayName: '',
-            age:'5',
-            breed: 'ポメラニアン',
-            description: '大きなお耳につぶらな瞳のチビちゃん',
-            gender: 'male'
-          }
-        ]
+        isLiked: false,
+        applyStatus: 'Apply'
       }
     },
     components: {
       Carousel,
       Slide
+    },
+
+    computed: {
+      currentUser: function() {
+        return this.$store.getters['auth/user'].auth
+      },
+      ...mapGetters([
+        'getUser',
+        'getPartners'
+      ])
     },
     methods: {
       signIn:function ()  {
@@ -127,16 +128,18 @@
         }).catch(function () {
           alert('error.');
         })
-      }
-    },
-    computed: {
-      currentUser: function() {
-        return this.$store.getters['auth/user'].auth
       },
-      ...mapGetters([
-        'getUser',
-        'getPartners'
-      ])
+      updateUsersLiked (e) {
+//        console.log(this.applyStatus)
+        if(this.applyStatus === 'Apply' ) {
+          this.applyStatus = 'Done'
+        } else {
+          this.applyStatus = 'Apply'
+        }
+        const uid = e.currentTarget.id;
+        console.log(uid)
+        this.$store.commit('updateUserLiked', uid)
+      }
     },
     created() {
       firebase.auth().onAuthStateChanged((user) => {
@@ -146,18 +149,28 @@
           this.message = `ログインしてない`
         }
       })
+
       const userID = firebase.auth().currentUser.uid
       const db = firebaseApp.database()
       const dbUsersRef = db.ref('/users/' + userID)
       const dbPartnersRef = db.ref('users');
-      console.log(dbUsersRef);
+//      console.log(dbUsersRef);
       this.$store.dispatch('setUsersRef', dbUsersRef)
       this.$store.dispatch('setPartnersRef', dbPartnersRef)
+//      firebase.database().ref('users/').on('value', snapshot => {
+//        if (snapshot) {
+//          // snapshotで最新状態を取得する
+//          const currentUser = firebase.auth().currentUser.uid
+//          const userData =  snapshot.val()[currentUser]
+//          if(!userData.isLiked) return
+//          this.applyStatus = userData.isLiked
+//        }
+//      })
     }
   }
 </script>
 
-<style lang="scss" scopped>
+<style lang="scss">
   @import "../assets/sass/setting";
   .sign-in {
     padding: .5rem;
@@ -173,6 +186,27 @@
     img {
       width: 100%;
     }
+  }
+  .profile-wrap {
+    margin-bottom:3rem;
+  }
+  .control-button {
+    text-align: center;
+    margin-bottom:1rem;
+    span {
+      margin: 0 .5rem;
+    }
+    .button.is-danger.is-outlined:focus {
+      box-shadow: none;
+    }
+    .button {
+      &.is-liked {
+        background-color: $isDone !important;
+        border:$isDone;
+        color: $wht;
+      }
+    }
+
   }
   .profile-info {
     padding: 0 0.5rem;

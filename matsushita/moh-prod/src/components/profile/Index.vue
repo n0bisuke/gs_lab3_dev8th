@@ -2,13 +2,14 @@
   <div class="profile-wrap">
     <div class="profile-photo-slide">
       <carousel :perPage="1" paginationActiveColor="#42b983" paginationColor="#b2ebd1" :paginationSize='5' easing="linear">
-        <slide v-for="" >
-          <img v-bind:src="getUser.photoUrl1" alt="プロフィール写真">
-        </slide>
         <slide>
+          <img v-if="getUser.photoUrl1" v-bind:src="getUser.photoUrl1" alt="プロフィール写真">
+          <img v-else src="http://placehold.jp/24/cccccc/ffffff/500x500.png?text=placehold.jp">
+        </slide>
+        <slide v-if="getUser.photoUrl2">
           <img v-bind:src="getUser.photoUrl2" alt="プロフィール写真">
         </slide>
-        <slide>
+        <slide v-if="getUser.photoUrl3">
           <img v-bind:src="getUser.photoUrl3" alt="プロフィール写真">
         </slide>
       </carousel>
@@ -55,9 +56,9 @@
         'getUser'
       ]),
       setGender() {
-        if(this.gender === 'male') {
+        if(this.getUser.gender == 'male') {
           return '男の子'
-        }else {
+        } else {
           return '女の子'
         }
       }
@@ -65,7 +66,8 @@
     components: {
       Carousel,
       Slide
-    }
+    },
+
   }
 </script>
 <style lang="scss">

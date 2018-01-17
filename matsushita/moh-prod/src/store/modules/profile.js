@@ -1,5 +1,6 @@
 import { firebaseAction } from 'vuexfire'
 import firebase from 'firebase'
+import {moment} from '../../App.vue'
 const state = {
   user: {}
 }
@@ -30,6 +31,11 @@ const mutations = {
   },
   updateUserPhotoUrl3(state, userPhotoUrl3) {
     state.user.photoUrl3 = userPhotoUrl3
+  },
+  updateUserLiked(state, uid) {
+    const key = uid
+    const timeStamp = moment().format();
+    state.user.liked[key] = timeStamp
   }
 }
 

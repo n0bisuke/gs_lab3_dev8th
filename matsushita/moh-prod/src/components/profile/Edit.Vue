@@ -78,7 +78,7 @@
     <div class="field">
       <label class="label">写真URL3</label>
       <div class="control">
-        <input class="input" type="text" placeholder="" :value="getUser.photoUrl2" @input="updateUserPhotoUrl3">
+        <input class="input" type="text" placeholder="" :value="getUser.photoUrl3" @input="updateUserPhotoUrl3">
       </div>
     </div>
 
@@ -190,6 +190,7 @@
       },
       updateUserPhotoUrl3(e) {
         this.$store.commit('updateUserPhotoUrl3', e.target.value)
+        console.dir(e.target)
       }
     }
   }
