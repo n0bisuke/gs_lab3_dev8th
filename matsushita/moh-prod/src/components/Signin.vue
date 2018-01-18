@@ -57,12 +57,13 @@
           <hr>
         </div>
         <div class="control-button">
-          <button v-bind:class="{'is-liked': isLiked }"
-                  v-on:click="{ isLiked =! isLiked }"
+          <button v-bind:class="{'is-liked': partner.liked }"
                   class="button is-danger is-outlined is-rounded"
                   v-bind:id="partner['.key']"
                   @click="updateUsersLiked">
             <i class="fas fa-heart"></i><span>{{ applyStatus }}</span></button>
+          <p>{{ partner['.value'] }}</p>
+          <p v-for="item, idx in partner['.value']" :key="['.key']"><span>{{item}}</span></p>
         </div>
         <div class="profile-discription">
           <p>{{ partner.description }}</p>
@@ -92,7 +93,6 @@
         email: '',
         password: '',
         message: '',
-        isLiked: false,
         applyStatus: 'Apply'
       }
     },
@@ -133,12 +133,14 @@
 //        console.log(this.applyStatus)
         if(this.applyStatus === 'Apply' ) {
           this.applyStatus = 'Done'
-        } else {
-          this.applyStatus = 'Apply'
         }
         const uid = e.currentTarget.id;
         console.log(uid)
         this.$store.commit('updateUserLiked', uid)
+        Object.keys(this.getUser.liked).forEach(function(key) {
+          var value = this[key];
+          console.log(key);
+        }, this.getUser.liked);
       }
     },
     created() {
@@ -149,6 +151,7 @@
           this.message = `ログインしてない`
         }
       })
+
 
       const userID = firebase.auth().currentUser.uid
       const db = firebaseApp.database()
