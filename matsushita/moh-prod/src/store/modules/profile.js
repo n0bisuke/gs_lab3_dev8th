@@ -2,7 +2,8 @@ import { firebaseAction } from 'vuexfire'
 import firebase from 'firebase'
 import {moment} from '../../App.vue'
 const state = {
-  user: {}
+  user: {
+  }
 }
 const mutations = {
   updateUser(state, user) {
@@ -34,8 +35,8 @@ const mutations = {
   },
   updateUserLiked(state, uid) {
     const key = uid
+    console.log(uid)
     const timeStamp = moment().format();
-    state.user.liked[key] = timeStamp
   }
 }
 
@@ -46,6 +47,7 @@ const getters = {
 
 const actions = {
   setUsersRef : firebaseAction(({ bindFirebaseRef }, { ref }) => {
+    console.log(ref)
     bindFirebaseRef('user', ref)
   }),
 }

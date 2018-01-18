@@ -57,13 +57,11 @@
           <hr>
         </div>
         <div class="control-button">
-          <button v-bind:class="{'is-liked': partner.liked }"
+          <button :class="{'is-liked': isLiked(partner['.key'])}"
                   class="button is-danger is-outlined is-rounded"
-                  v-bind:id="partner['.key']"
+                  :id="partner['.key']"
                   @click="updateUsersLiked">
             <i class="fas fa-heart"></i><span>{{ applyStatus }}</span></button>
-          <p>{{ partner['.value'] }}</p>
-          <p v-for="item, idx in partner['.value']" :key="['.key']"><span>{{item}}</span></p>
         </div>
         <div class="profile-discription">
           <p>{{ partner.description }}</p>
@@ -86,6 +84,7 @@
   import { store } from '../store/index.js'
   import { mapGetters } from 'vuex'
   import { Carousel, Slide } from 'vue-carousel'
+  import { jquery } from '../App.vue'
   export default {
     name: 'Signin',
     data () {
@@ -93,7 +92,7 @@
         email: '',
         password: '',
         message: '',
-        applyStatus: 'Apply'
+        applyStatus: 'Apply',
       }
     },
     components: {
@@ -111,6 +110,10 @@
       ])
     },
     methods: {
+      isLiked (uid) {
+        if(!this.getUser.liked) return
+        return Object.keys(this.getUser.liked).includes(uid);
+      },
       signIn:function ()  {
         firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
           user => {
@@ -134,14 +137,12 @@
         if(this.applyStatus === 'Apply' ) {
           this.applyStatus = 'Done'
         }
-        const uid = e.currentTarget.id;
-        console.log(uid)
+        if(this.applyStatus === 'Done' ){
+          this.applyStatus = 'Apply'
+        }
+        const uid = e.currentTarget.id
         this.$store.commit('updateUserLiked', uid)
-        Object.keys(this.getUser.liked).forEach(function(key) {
-          var value = this[key];
-          console.log(key);
-        }, this.getUser.liked);
-      }
+      },
     },
     created() {
       firebase.auth().onAuthStateChanged((user) => {
@@ -151,13 +152,10 @@
           this.message = `ログインしてない`
         }
       })
-
-
       const userID = firebase.auth().currentUser.uid
       const db = firebaseApp.database()
       const dbUsersRef = db.ref('/users/' + userID)
       const dbPartnersRef = db.ref('users');
-//      console.log(dbUsersRef);
       this.$store.dispatch('setUsersRef', dbUsersRef)
       this.$store.dispatch('setPartnersRef', dbPartnersRef)
 //      firebase.database().ref('users/').on('value', snapshot => {
@@ -169,7 +167,8 @@
 //          this.applyStatus = userData.isLiked
 //        }
 //      })
-    }
+
+    },
   }
 </script>
 

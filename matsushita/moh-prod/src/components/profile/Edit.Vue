@@ -130,32 +130,10 @@
 //      this.$store.dispatch('setUsersRef', dbUsersRef)
 //    },
     methods: {
-//      addNewUser() {
-//        const user = firebase.auth().currentUser;
-//        user.updateProfile({
-//          displayName: this.currentUser.displayName,
-//          photoURL: this.currentUser.photoURL,
-//        }).then(function() {
-//          alert('Success!')
-//        }).catch(function(error) {
-//          alert(error.message)
-//        })
-//      },
-//      saveUserData () {
-//        firebase.database().ref('users/' + this.currentUser.uid).set(
-//          this.getUser
-//        ).then( function() {
-//          alert('Success')
-//        }).catch(function(error) {
-//          alert(error)
-//        })
-//      },
       saveUserProfile() {
-//        this.$store.commit('updateUser', this.user)
         const obj = this.getUser
         delete obj['.key']
         delete obj['.value']
-        console.log(obj)
         firebase.database().ref('/users/' + this.currentUser.uid ).set(
           obj
         ).then( function() {
