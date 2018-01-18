@@ -100,7 +100,6 @@
       Carousel,
       Slide
     },
-
     computed: {
       currentUser: function() {
         return this.$store.getters['auth/user'].auth

@@ -15,7 +15,7 @@
       <i class="fas fa-check"></i>
     </span>
       </div>
-      <p class="help is-success">This username is available</p>
+      <!--<p class="help is-success">This username is available</p>-->
     </div>
 
     <div class="field">
@@ -26,7 +26,7 @@
         <span class="icon is-small is-right"><i class="fas fa-exclamation-triangle"></i>
     </span>
       </div>
-      <p class="help is-danger">This email is invalid</p>
+      <!--<p class="help is-danger">This email is invalid</p>-->
     </div>
 
     <div class="field">
