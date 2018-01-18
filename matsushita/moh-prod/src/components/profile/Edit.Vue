@@ -168,7 +168,6 @@
       },
       updateUserPhotoUrl3(e) {
         this.$store.commit('updateUserPhotoUrl3', e.target.value)
-        console.dir(e.target)
       }
     }
   }

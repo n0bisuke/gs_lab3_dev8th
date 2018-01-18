@@ -84,6 +84,7 @@
   import { store } from '../store/index.js'
   import { mapGetters } from 'vuex'
   import { Carousel, Slide } from 'vue-carousel'
+  import { moment } from '../App.vue'
   import { jquery } from '../App.vue'
   export default {
     name: 'Signin',
@@ -141,7 +142,12 @@
           this.applyStatus = 'Apply'
         }
         const uid = e.currentTarget.id
-        this.$store.commit('updateUserLiked', uid)
+//        this.$store.commit('updateUserLiked', uid)
+        console.log(moment().format())
+        const userID = firebase.auth().currentUser.uid
+        firebase.database().ref('/users/' + userID + '/liked/' + uid).set(
+          moment().format()
+        );
       },
     },
     created() {
@@ -158,15 +164,6 @@
       const dbPartnersRef = db.ref('users');
       this.$store.dispatch('setUsersRef', dbUsersRef)
       this.$store.dispatch('setPartnersRef', dbPartnersRef)
-//      firebase.database().ref('users/').on('value', snapshot => {
-//        if (snapshot) {
-//          // snapshotで最新状態を取得する
-//          const currentUser = firebase.auth().currentUser.uid
-//          const userData =  snapshot.val()[currentUser]
-//          if(!userData.isLiked) return
-//          this.applyStatus = userData.isLiked
-//        }
-//      })
 
     },
   }
