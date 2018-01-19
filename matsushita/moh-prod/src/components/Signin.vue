@@ -1,28 +1,6 @@
 <template>
   <!--ログインしてない-->
-  <div class="sign-in" v-if="!currentUser">
-    <div class="field">
-      <p class="control has-icons-left has-icons-right">
-        <input class="input" type="email" placeholder="Email" v-model="email">
-        <span class="icon is-small is-left"><i class="fa fa-envelope"></i></span>
-        <span class="icon is-small is-right">
-      <i class="fa fa-check"></i>
-    </span>
-      </p>
-    </div>
-    <div class="field">
-      <p class="control has-icons-left">
-        <input class="input" type="password" placeholder="Password" v-model="password">
-        <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
-      </p>
-    </div>
-    <div class="button-field">
-      <p class="control">
-        <button class="button is-primary is-medium" @click="signIn">LOGIN</button>
-        <router-link :to="{ name: 'signUpLink' }" tag="a" class="">Create Account</router-link>
-      </p>
-    </div>
-  </div>
+
   <!--ログインしてる-->
   <div class="is-loggedIn" v-else>
     <div class="" v-for="partner, idx in getPartners" :key="partner['.key']">
@@ -68,12 +46,7 @@
         </div>
       </div>
     </div>
-    <div class="button-field">
-      <div class="control">
-        <p class="login-user"><strong>{{ getUser.displayName }}</strong>でログイン中 </p>
-        <button class="button is-info is-medium" @click="signOut">SIGN OUT</button>
-      </div>
-    </div>
+   <moh-login></moh-login>
   </div>
 
 
@@ -86,6 +59,7 @@
   import { Carousel, Slide } from 'vue-carousel'
   import { moment } from '../App.vue'
   import { jquery } from '../App.vue'
+  import Login from './Login.vue'
   export default {
     name: 'Signin',
     data () {
@@ -98,7 +72,8 @@
     },
     components: {
       Carousel,
-      Slide
+      Slide,
+      mohLogin: Login
     },
     computed: {
       currentUser: function() {
@@ -113,24 +88,6 @@
       isLiked (uid) {
         if(!this.getUser.liked) return
         return Object.keys(this.getUser.liked).includes(uid);
-      },
-      signIn:function ()  {
-        firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
-          user => {
-            alert('success!')
-            this.$router.push('/')
-          },
-          err => {
-            alert(err.message)
-          }
-        )
-      },
-      signOut () {
-        firebase.auth().signOut().then(function () {
-          alert('logged out');
-        }).catch(function () {
-          alert('error.');
-        })
       },
       updateUsersLiked (e) {
 //        console.log(this.applyStatus)
