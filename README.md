@@ -28,7 +28,8 @@ https://github.com/n0bisuke/gs_lab3_dev8th/issues/1
 ## URL
 
 作ったら記載しましょう
--[Moh](https://moh-app.site/)
+
+* [Moh](https://moh-app.site/)
 
 Dev7期参考 -> https://github.com/n0bisuke/gs7th/
 
